@@ -6,6 +6,7 @@ import com.alibaba.fastjson2.JSONObject;
 import com.github.shy526.caimogu.CaiMoGuHelp;
 import com.github.shy526.factory.OkHttpClientFactory;
 import com.github.shy526.interceptor.UserAgentInterceptor;
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 import org.jetbrains.annotations.NotNull;
 
@@ -22,11 +23,12 @@ import java.util.stream.Stream;
  * Hello world!
  *
  */
+@Slf4j
 public class App 
 {
     public static void main( String[] args )
     {
-
+        log.error("启动踩蘑菇获取影响力任务");
         Set<Integer> ids = CaiMoGuHelp.readResources("gameIds.txt");
         if(ids.isEmpty()){
             ids = CaiMoGuHelp.ScanGameIds();
@@ -45,10 +47,10 @@ public class App
             ids.removeAll(acIds);
         }
         if (ids.isEmpty()) {
-            //说明无可用Id
+            log.error("无可供评分的游戏");
             return;
         }
-        System.out.println("测试");
+        log.error("测试");
         int trueFlag = 0;
  /*       for (Integer id : ids) {
             if (CaiMoGuHelp.actSore(id,null)){
